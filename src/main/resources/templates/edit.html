@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" th:action="'/'+${user.id}" th:object="${user}">
+    <input id="nome" placeholder="Enter First Name" required th:field="*{nome}" type="text"/>
+    <input id="cognome" placeholder="Enter Last Name" required th:field="*{cognome}" type="text"/>
+    <input id="activeFlag" type="hidden" th:field="*{active}" value='true'>
+    <input type="submit" value="Update"
+           onclick="document.getElementById('activeFlag').value='true'">
+    <input type="submit" value="Delete"
+           onclick="document.getElementById('activeFlag').value='false'">
+
+</form>
+
+</body>
+</html>

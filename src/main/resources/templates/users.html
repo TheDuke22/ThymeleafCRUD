@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table style="background-color: khaki">
+    <tr>
+        <th style="color: aqua">ID</th>
+        <th style="color: blue">nome</th>
+        <th style="color: blueviolet">cognome</th>
+        <th style="color: brown">Creato Il</th>
+        <th style="color: deeppink">Aggiornato Il</th>
+        <th style="color: hotpink">Azioni</th>
+    </tr>
+    <tr th:if="${#lists.isEmpty(users)}">
+        <td colspan="7">No Records found. Add some...!</td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.nome}"></td>
+        <td th:text="${user.cognome}"></td>
+        <td th:text="${user.creatoil}"></td>
+        <td th:text="${user.aggiornatoil}"></td>
+        <td><a method="post" th:href="@{'/' + ${user.id}}">✏</a></td>
+    </tr>
+</table>
+
+<form method="post" th:action="@{/}" th:object="${user}">
+    <input id="nome" placeholder="Enter nome" required th:field="*{nome}" type="text"/>
+    <input id="cognome" placeholder="Enter cognome" required th:field="*{cognome}" type="text"/>
+    <input type="submit" value="Create User">
+    <input type="reset" value="Reset">
+</form>
+
+<div th:if="${userMessage}" th:utext="${userMessage}"></div>
+
+</form>
+
+</body>
+</html>
